@@ -5,12 +5,14 @@ phases:
     runtime-versions:
       nodejs: 18
     commands:
-      - echo "Installing dependencies"
       - npm ci --legacy-peer-deps
+
+  pre_build:
+    commands:
+      - npm test -- --watch=false || true
 
   build:
     commands:
-      - echo "Building the React app"
       - npm run build
 
 artifacts:
